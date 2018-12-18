@@ -1,4 +1,14 @@
 <mat-toolbar color="primary">
   <span>My Application</span>
 </mat-toolbar>
+<nav mat-tab-nav-bar backgroundColor="primary">
+  <a mat-tab-link
+    *ngFor="let route of routes"
+    [routerLink]="route.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive"
+    >
+    {{ route.label }}
+  </a>
+</nav>
 <router-outlet></router-outlet>

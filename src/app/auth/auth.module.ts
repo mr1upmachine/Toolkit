@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -12,7 +13,8 @@ import { AuthGuard } from './auth.guard';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatButtonModule
   ],
   providers: [
     AuthService,
