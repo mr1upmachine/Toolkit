@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'tk-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   items: Observable<any[]>;
 
   constructor(
-    db: AngularFirestore,
+    db: AngularFirestore
   ) {
     this.items = db.collection('test').valueChanges();
   }
