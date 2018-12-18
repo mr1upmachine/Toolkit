@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @HostBinding('class') readonly hostClass = 'flex-stretch flex-center';
+
   user$ = this.authService.user$;
 
   constructor(

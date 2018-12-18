@@ -1,0 +1,4 @@
+// Extend class function, allows safe extention of class without side effects
+@function exClass($name) {
+  @return unquote(".#{$name}, %#{$name}");
+}
