@@ -84,7 +84,7 @@
 // Layout helpers px (margin & padding)
 $types: none top bottom left right;
 $combos: top-bottom left-right;
-$values: 10 20 30;
+$values: 5 10 15 20 25 30;
 
 @mixin m-p-mixin($type, $num, $style) {
   @if $type == none {
@@ -118,5 +118,15 @@ $values: 10 20 30;
   .m-v-#{$val} {
     @extend .m-top-#{$val};
     @extend .m-bottom-#{$val};
+  }
+
+  .p-h-#{$val} {
+    @extend .p-left-#{$val};
+    @extend .p-right-#{$val};
+  }
+
+  .p-v-#{$val} {
+    @extend .p-top-#{$val};
+    @extend .p-bottom-#{$val};
   }
 }

@@ -1,14 +1,21 @@
 <mat-toolbar color="primary">
-  <span>My Application</span>
+  <span>Toolkit</span>
 </mat-toolbar>
-<nav mat-tab-nav-bar backgroundColor="primary">
+<div class="flex flex-stretch">
+  <router-outlet></router-outlet>
+</div>
+<nav mat-tab-nav-bar
+  *ngIf="authService.user$ | async"
+  backgroundColor="primary"
+  >
   <a mat-tab-link
     *ngFor="let route of routes"
+    class="nav-bar-anchor"
+    [attr.title]="route.label"
     [routerLink]="route.path"
     routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive"
     >
-    {{ route.label }}
+    <fa-icon [icon]="route.icon"></fa-icon>
   </a>
 </nav>
-<router-outlet></router-outlet>

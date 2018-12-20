@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'tk-player-page',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./player-page.component.scss']
 })
 export class PlayerPageComponent implements OnInit {
+  faCoffee = faCoffee;
 
   constructor() { }
 

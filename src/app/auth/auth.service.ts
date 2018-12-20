@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,12 @@ export class AuthService {
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth
-    ) { }
+  ) { }
 
   loginWithGoogle() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
+      this.router.navigate(['/player']);
+    });
   }
 
   logout() {
