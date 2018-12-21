@@ -3,8 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs';
+import {
+  MatRippleModule,
+  MatTabsModule,
+  MatToolbarModule
+} from '@angular/material';
 
 // Font Awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,21 +20,30 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppNavComponent } from './app-nav/app-nav.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppNavComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatTabsModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+
+    MatRippleModule,
+    MatTabsModule,
+    MatToolbarModule,
+
     FontAwesomeModule,
-    AppRoutingModule
+
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
   ],

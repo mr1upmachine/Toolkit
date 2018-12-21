@@ -1,13 +1,11 @@
-<div *ngIf="(authService.user$ | async) as user">
+<div *ngIf="(authService.fbUser$ | async) as user">
   <div>{{ user.uid }}</div>
   <div>{{ user.displayName }}</div>
   <div>{{ user.email }}</div>
   <div>{{ user.photoUrl }}</div>
 </div>
 
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="Name" [(ngModel)]="value">
-</mat-form-field>
+<br>
 
 <button
   mat-flat-button

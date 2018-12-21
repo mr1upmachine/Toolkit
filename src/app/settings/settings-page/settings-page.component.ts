@@ -10,7 +10,6 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class SettingsPageComponent {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap p-v-10 p-h-20';
-  value;
 
   constructor(
     public authService: AuthService,

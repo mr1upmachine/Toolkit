@@ -7,7 +7,7 @@ import { auth } from 'firebase/app';
   providedIn: 'root'
 })
 export class AuthService {
-  user$ = this.afAuth.authState;
+  fbUser$ = this.afAuth.authState;
 
   constructor(
     private router: Router,
