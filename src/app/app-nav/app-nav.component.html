@@ -1,0 +1,33 @@
+<mat-toolbar
+  class="flex-static"
+  color="primary"
+  >
+  <span>Toolkit</span>
+  <span class="flex-stretch"></span>
+  <a
+    class="text-color-white"
+    matRipple
+    [matRippleCentered]="true"
+    [matRippleUnbounded]="true"
+    routerLink="/settings"
+    >
+    <fa-icon [icon]="faCog"></fa-icon>
+  </a>
+</mat-toolbar>
+<div class="flex flex-stretch">
+  <router-outlet></router-outlet>
+</div>
+<nav mat-tab-nav-bar
+  backgroundColor="primary"
+  >
+  <a mat-tab-link
+    *ngFor="let route of routes"
+    class="nav-bar-anchor"
+    [attr.title]="route.label"
+    [routerLink]="route.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive"
+    >
+    <fa-icon [icon]="route.icon"></fa-icon>
+  </a>
+</nav>

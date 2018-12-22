@@ -6,6 +6,6 @@ export const environment = {
     databaseURL: 'https://toolkit-bcca0.firebaseio.com',
     projectId: 'toolkit-bcca0',
     storageBucket: 'toolkit-bcca0.appspot.com',
-    messagingSenderId: '412590064557',
-  },
+    messagingSenderId: '412590064557'
+  }
 };

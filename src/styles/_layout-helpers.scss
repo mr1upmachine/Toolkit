@@ -1,0 +1,136 @@
+@import "./functions";
+
+// Sizing
+#{exClass(full-size)} {
+  @extend %w-100;
+  @extend %h-100;
+}
+
+#{exClass(h-100)} {
+  height: 100%
+}
+
+#{exClass(w-100)} {
+  width: 100%;
+}
+
+// Flex rules
+#{exClass(flex)} {
+  display: flex;
+}
+
+#{exClass(flex-row)} {
+  @extend %flex;
+  flex-direction: row;
+}
+
+.flex-row-nowrap {
+  @extend %flex-row;
+  @extend %flex-nowrap;
+}
+
+#{exClass(flex-column)} {
+  @extend %flex;
+  flex-direction: column;
+}
+
+.flex-column-nowrap {
+  @extend %flex-column;
+  @extend %flex-nowrap;
+}
+
+#{exClass(flex-nowrap)} {
+  flex-wrap: nowrap;
+}
+
+.flex-h-center.flex-row,
+.flex-h-center.flex-row-nowrap,
+.flex-v-center.flex-column,
+.flex-v-center.flex-column-nowrap,
+.flex-center {
+  @extend %flex;
+  justify-content: center;
+}
+
+.flex-v-center.flex-row,
+.flex-v-center.flex-row-nowrap,
+.flex-h-center.flex-column,
+.flex-h-center.flex-column-nowrap,
+.flex-center {
+  @extend %flex;
+  align-items: center;
+}
+
+.flex-start {
+  @extend %flex;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  @extend %flex;
+  justify-content: flex-end;
+}
+
+.flex-space-between {
+  @extend %flex;
+  justify-content: space-between;
+}
+
+#{exClass(flex-stretch)} {
+  flex: 1 1 auto;
+}
+
+#{exClass(flex-static)} {
+  flex: 0 0 auto;
+}
+
+// Layout helpers px (margin & padding)
+$types: none top bottom left right;
+$combos: top-bottom left-right;
+$values: 5 10 15 20 25 30;
+
+@mixin m-p-mixin($type, $num, $style) {
+  @if $type == none {
+    #{$style}: #{$num}px;
+  } @else {
+    #{$style}-#{$type}: #{$num}px;
+  }
+}
+
+@each $val in $values {
+  @each $type in $types {
+    $typeName: unquote("");
+    @if $type != none {
+      $typeName: #{$type}-;
+    }
+
+    .m-#{$typeName}#{$val} {
+      @include m-p-mixin($type, $val, margin);
+    }
+
+    .p-#{$typeName}#{$val} {
+      @include m-p-mixin($type, $val, padding);
+    }
+  }
+
+  @each $mp in m p {
+    .#{$mp}-h-#{$val} {
+      @extend .#{$mp}-left-#{$val};
+      @extend .#{$mp}-right-#{$val};
+    }
+
+    .#{$mp}-v-#{$val} {
+      @extend .#{$mp}-top-#{$val};
+      @extend .#{$mp}-bottom-#{$val};
+    }
+  }
+}
+
+// Overflow
+.overflow-x {
+  overflow-x: auto;
+}
+
+.overflow-y {
+  overflow-y: auto;
+}
