@@ -8,11 +8,16 @@ import { auth } from 'firebase/app';
 })
 export class AuthService {
   fbUser$ = this.afAuth.authState;
+  currentFbUser: firebase.User;
 
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth
-  ) { }
+  ) {
+    this.fbUser$.subscribe(user => {
+      this.currentFbUser = user;
+    });
+  }
 
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {

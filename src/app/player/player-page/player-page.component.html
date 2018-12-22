@@ -1,4 +1,26 @@
-<p class="m-10">
-  player-page works!
-</p>
-<fa-icon [icon]="faCoffee"></fa-icon>
+<div
+  *ngIf="(player$ | async) as playerData; else LoadingSpinner"
+  class="flex-stretch p-20 overflow-y"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)">
+  <mat-card
+    *ngFor="let cardType of playerCards"
+    class="m-v-10"
+    cdkDrag
+    cdkDragBoundary="mat-card"
+    >
+    <mat-card-header cdkDragHandle>
+      <mat-card-title>{{ cardType }}</mat-card-title>
+      <mat-card-subtitle>qwerty</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #LoadingSpinner>
+    <mat-spinner></mat-spinner>
+</ng-template>
