@@ -1,0 +1,16 @@
+<div *ngIf="(authService.fbUser$ | async) as user">
+  <div>{{ user.uid }}</div>
+  <div>{{ user.displayName }}</div>
+  <div>{{ user.email }}</div>
+  <div>{{ user.photoUrl }}</div>
+</div>
+
+<br>
+
+<button
+  mat-flat-button
+  color="warn"
+  (click)="logout()"
+  >
+  Sign out
+</button>

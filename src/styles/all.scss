@@ -1,6 +1,11 @@
 // Material Theme
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
+
+// App imports
+@import "./functions"; // must be first
+@import "./layout-helpers";
+@import "./color-helpers";
+@import "./cdk-drag-config";
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -22,15 +27,11 @@ $tk-app-theme: mat-dark-theme($tk-app-primary, $tk-app-accent, $tk-app-warn);
 // that you are using.
 @include angular-material-theme($tk-app-theme);
 
-// Imports
-@import "./functions";
-@import "./layout-helpers";
-
 // Global overrides
 html {
   @extend %full-size;
-  background-color: #343434;
-  color: white;
+  background-color: $tk-background-color;
+  color: $tk-white;
 }
 
 body {

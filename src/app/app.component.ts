@@ -5,15 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  routes = [
-    {
-      path: '/auth/login',
-      label: 'Login'
-    },
-    {
-      path: '/player',
-      label: 'Player'
-    }
-  ];
-}
+export class AppComponent { }

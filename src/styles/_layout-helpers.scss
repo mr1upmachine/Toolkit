@@ -43,19 +43,22 @@
   flex-wrap: nowrap;
 }
 
+.flex-h-center.flex-row,
+.flex-h-center.flex-row-nowrap,
+.flex-v-center.flex-column,
+.flex-v-center.flex-column-nowrap,
 .flex-center {
-  @extend %flex-v-center;
-  @extend %flex-h-center;
-}
-
-#{exClass(flex-v-center)} {
-  @extend %flex;
-  align-items: center;
-}
-
-#{exClass(flex-h-center)} {
   @extend %flex;
   justify-content: center;
+}
+
+.flex-v-center.flex-row,
+.flex-v-center.flex-row-nowrap,
+.flex-h-center.flex-column,
+.flex-h-center.flex-column-nowrap,
+.flex-center {
+  @extend %flex;
+  align-items: center;
 }
 
 .flex-start {
@@ -84,7 +87,7 @@
 // Layout helpers px (margin & padding)
 $types: none top bottom left right;
 $combos: top-bottom left-right;
-$values: 10 20 30;
+$values: 5 10 15 20 25 30;
 
 @mixin m-p-mixin($type, $num, $style) {
   @if $type == none {
@@ -110,13 +113,24 @@ $values: 10 20 30;
     }
   }
 
-  .m-h-#{$val} {
-    @extend .m-left-#{$val};
-    @extend .m-right-#{$val};
-  }
+  @each $mp in m p {
+    .#{$mp}-h-#{$val} {
+      @extend .#{$mp}-left-#{$val};
+      @extend .#{$mp}-right-#{$val};
+    }
 
-  .m-v-#{$val} {
-    @extend .m-top-#{$val};
-    @extend .m-bottom-#{$val};
+    .#{$mp}-v-#{$val} {
+      @extend .#{$mp}-top-#{$val};
+      @extend .#{$mp}-bottom-#{$val};
+    }
   }
+}
+
+// Overflow
+.overflow-x {
+  overflow-x: auto;
+}
+
+.overflow-y {
+  overflow-y: auto;
 }
