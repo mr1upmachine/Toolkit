@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 // Firebase
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -16,12 +17,19 @@ export class PlayerService {
 
   constructor(
     private db: AngularFirestore,
+    private fns: AngularFireFunctions,
     private authService: AuthService
   ) { }
 
   setPlayerCards(newCards: string[]) {
+    console.log('this.fns.functions: ', this.fns.functions);
     this.dbUserData.update({
       playerCards: newCards
     });
+  }
+
+  testApi() {
+    const callable = this.fns.httpsCallable('helloWorld');
+    return callable({ name: 'some-data' });
   }
 }

@@ -24,6 +24,7 @@ export class PlayerPageComponent implements OnInit {
     this.player$.subscribe(playerData => {
       this.playerCards = playerData.playerCards;
     });
+    this.playerService.testApi().subscribe(console.log);
   }
 
   drop(event: CdkDragDrop<string[]>) {

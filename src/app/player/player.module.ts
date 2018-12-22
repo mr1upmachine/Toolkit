@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Firebase
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
 
 import { PlayerRoutingModule } from './player-routing.module';
 import { PlayerPageComponent } from './player-page/player-page.component';
@@ -26,13 +27,18 @@ import { PlayerService } from './player.service';
   ],
   imports: [
     CommonModule,
+
     MatCardModule,
     MatProgressSpinnerModule,
     DragDropModule,
+
     AngularFirestoreModule,
+    AngularFireFunctionsModule,
+
     PlayerRoutingModule
   ],
   providers: [
+    { provide: FunctionsRegionToken, useValue: 'us-central1' },
     PlayerService
   ]
 })
