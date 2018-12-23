@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build:prod": "ng build --prod --aot",
-    "push:prod": "ng build --prod --aot && aws s3 sync ./dist/Toolkit s3://toolkit.mr1upmachine.com --delete"
+    "publish": "ng build --prod --aot && aws s3 sync ./dist/Toolkit s3://toolkit.mr1upmachine.com --delete"
   },
   "private": true,
   "dependencies": {
