@@ -5,8 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AppNavService {
-  private toolbarCustomTitle$: BehaviorSubject<string>;
-  private toolbarActions$: BehaviorSubject<TemplateRef<any>>;
+  private toolbarCustomTitle$ = new BehaviorSubject<string>(null);
+  private toolbarActions$ = new BehaviorSubject<TemplateRef<any>>(null);
+  private toolbarActionMenu$ = new BehaviorSubject<TemplateRef<any>>(null);
 
   resetToolbar(): void {
     this.clearToolbarTitle();
@@ -14,13 +15,10 @@ export class AppNavService {
   }
 
   setToolbarTitle(title: string): void {
-    if (this.initToolbarTitle(title)) {
-      this.toolbarCustomTitle$.next(title);
-    }
+    this.toolbarCustomTitle$.next(title);
   }
 
   getToolbarTitle$(): BehaviorSubject<string> {
-    this.initToolbarTitle();
     return this.toolbarCustomTitle$;
   }
 
@@ -28,23 +26,11 @@ export class AppNavService {
     this.setToolbarTitle(null);
   }
 
-  private initToolbarTitle(actionsRef: string = null): boolean {
-    if (this.toolbarCustomTitle$) {
-      return true;
-    }
-
-    this.toolbarCustomTitle$ = new BehaviorSubject(actionsRef);
-    return false;
-  }
-
   setToolbarActions(actionsRef: TemplateRef<any>): void {
-    if (this.initToolbarActions(actionsRef)) {
-      this.toolbarActions$.next(actionsRef);
-    }
+    this.toolbarActions$.next(actionsRef);
   }
 
   getToolbarActions$(): BehaviorSubject<TemplateRef<any>> {
-    this.initToolbarActions();
     return this.toolbarActions$;
   }
 
@@ -52,12 +38,15 @@ export class AppNavService {
     this.setToolbarActions(null);
   }
 
-  private initToolbarActions(actionsRef: TemplateRef<any> = null): boolean {
-    if (this.toolbarActions$) {
-      return true;
-    }
+  setToolbarActionMenu(actionMenuRef: TemplateRef<any>): void {
+    this.toolbarActionMenu$.next(actionMenuRef);
+  }
 
-    this.toolbarActions$ = new BehaviorSubject(actionsRef);
-    return false;
+  getToolbarActionMenu$(): BehaviorSubject<TemplateRef<any>> {
+    return this.toolbarActionMenu$;
+  }
+
+  clearToolbarActionMenu(): void {
+    this.setToolbarActionMenu(null);
   }
 }

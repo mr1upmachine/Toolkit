@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { NoAuthGuard } from './shared/auth/no-auth.guard';
 import { AppNavComponent } from './app-nav/app-nav.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 // https://stackoverflow.com/questions/41219439/angular2-global-guard-user-has-to-be-logged-in-always
 const routes: Routes = [
@@ -15,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: '404',
-    component: NotFoundComponent
+    loadChildren: './not-found/not-found.module#NotFoundModule'
   },
   {
     path: 'auth',

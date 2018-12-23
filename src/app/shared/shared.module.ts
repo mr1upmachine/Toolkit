@@ -1,6 +1,10 @@
+// Angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Firebase
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
 
 import { AuthService } from '../shared/auth/auth.service';
@@ -11,6 +15,8 @@ import { NoAuthGuard } from './auth/no-auth.guard';
   declarations: [],
   imports: [
     CommonModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireFunctionsModule
   ],
   providers: [

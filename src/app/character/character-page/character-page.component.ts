@@ -35,7 +35,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
   @HostBinding('class.flex-center') isLoading = true;
   @ViewChild('ToolbarActions') toolbarActions: TemplateRef<any>;
 
-  characterData: any; // TODO type
+  characterData: ICharacterFb | any; // TODO enforce type
   private characterData$ = this.characterService.characterData$;
 
   editMode$ = new BehaviorSubject<boolean>(false);
@@ -52,6 +52,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
     this.appNavService.setToolbarActions(this.toolbarActions);
 
     this.characterData$.pipe(
+      takeUntil(this.destroy$),
       filter(data => data !== null)
     ).subscribe(characterData => {
       this.characterData = characterData;

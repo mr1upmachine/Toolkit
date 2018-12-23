@@ -40,3 +40,10 @@
     <fa-icon [icon]="route.icon"></fa-icon>
   </a>
 </nav>
+
+<mat-menu #ToolbarActionMenu="matMenu">
+  <ng-container
+    *ngIf="toolbarActions$ | async as toolbarActions"
+    [ngTemplateOutlet]="toolbarActions"
+  ></ng-container>
+</mat-menu>

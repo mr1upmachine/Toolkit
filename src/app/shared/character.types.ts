@@ -9,7 +9,7 @@ export interface ICharacterMeta {
   metadataGameSystem: string;
 }
 
-export type ICharacterFb = ICharacter | ICharacterMeta;
+export type ICharacterFb = ICharacter & ICharacterMeta;
 
 export interface IDnD5eCharacter extends ICharacter, ICharacterMeta {
   ac: number;
