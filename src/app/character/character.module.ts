@@ -15,13 +15,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Font Awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { PlayerRoutingModule } from './player-routing.module';
-import { PlayerPageComponent } from './player-page/player-page.component';
-import { PlayerService } from './player.service';
+import { CharacterRoutingModule } from './character-routing.module';
+import { CharacterPageComponent } from './character-page/character-page.component';
+import { CharacterService } from './character.service';
+import { CharacterCardsComponent } from './character-page/character-cards/character-cards.component';
 
 @NgModule({
   declarations: [
-    PlayerPageComponent
+    CharacterPageComponent,
+    CharacterCardsComponent
   ],
   imports: [
     CommonModule,
@@ -35,10 +37,10 @@ import { PlayerService } from './player.service';
 
     FontAwesomeModule,
 
-    PlayerRoutingModule
+    CharacterRoutingModule
   ],
   providers: [
-    PlayerService
+    CharacterService
   ]
 })
-export class PlayerModule { }
+export class CharacterModule { }

@@ -37,8 +37,8 @@ export class AppNavComponent implements OnInit {
 
   routes: IAppNavBar[] = [
     {
-      path: '/player',
-      label: 'Player',
+      path: '/character',
+      label: 'Character',
       icon: faFileAlt
     }
   ];

@@ -25,7 +25,7 @@ export class NoAuthGuard implements CanActivate {
       return this.authService.fbUser$.pipe(
         tap(isLoggedIn => {
           if (isLoggedIn) {
-            this.router.navigate(['/player']);
+            this.router.navigate(['/character']);
           }
         }),
         map(userToBool => !userToBool)

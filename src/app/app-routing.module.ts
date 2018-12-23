@@ -29,12 +29,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'player',
+        redirectTo: 'character',
         pathMatch: 'full'
       },
       {
-        path: 'player',
-        loadChildren: './player/player.module#PlayerModule'
+        path: 'character',
+        loadChildren: './character/character.module#CharacterModule'
       },
       {
         path: 'settings',
