@@ -24,6 +24,11 @@
   flex-direction: row;
 }
 
+.flex-row-wrap {
+  @extend %flex-row;
+  @extend %flex-wrap;
+}
+
 .flex-row-nowrap {
   @extend %flex-row;
   @extend %flex-nowrap;
@@ -34,9 +39,18 @@
   flex-direction: column;
 }
 
+.flex-column-wrap {
+  @extend %flex-column;
+  @extend %flex-wrap;
+}
+
 .flex-column-nowrap {
   @extend %flex-column;
   @extend %flex-nowrap;
+}
+
+#{exClass(flex-wrap)} {
+  flex-wrap: wrap;
 }
 
 #{exClass(flex-nowrap)} {
@@ -44,8 +58,10 @@
 }
 
 .flex-h-center.flex-row,
+.flex-h-center.flex-row-wrap,
 .flex-h-center.flex-row-nowrap,
 .flex-v-center.flex-column,
+.flex-v-center.flex-column-wrap,
 .flex-v-center.flex-column-nowrap,
 .flex-center {
   @extend %flex;
@@ -53,8 +69,10 @@
 }
 
 .flex-v-center.flex-row,
+.flex-v-center.flex-row-wrap,
 .flex-v-center.flex-row-nowrap,
 .flex-h-center.flex-column,
+.flex-h-center.flex-column-wrap,
 .flex-h-center.flex-column-nowrap,
 .flex-center {
   @extend %flex;

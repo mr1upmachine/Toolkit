@@ -7,30 +7,24 @@
     class="m-v-10 position-relative"
     cdkDrag
     >
-    <mat-card-header>
+    <!-- <mat-card-header>
       <mat-card-title>
         <span>{{ cardType }}</span>
       </mat-card-title>
-    </mat-card-header>
+    </mat-card-header> -->
     <fa-icon
       cdkDragHandle
-      class="position-absolute top-5 right-5 p-10"
+      class="position-absolute top-5 right-5 p-5"
       [class.visibility-hidden]="!(editMode$ | async)"
       [icon]="faArrowsAlt"
     ></fa-icon>
     <!-- TODO: extract card content into seperate components to be rendered -->
+    <!-- TODO: investigate if better to implement components as extention of card content -->
     <mat-card-content [ngSwitch]="cardType">
-      <!-- dnd5eStats -->
-      <ng-container *ngSwitchCase="'dnd5eStats'">
-        <span *ngIf="characterStats">
-          str:{{ characterStats.str }}&nbsp;
-          dex:{{ characterStats.dex }}&nbsp;
-          con:{{ characterStats.con }}&nbsp;
-          int:{{ characterStats.int }}&nbsp;
-          wis:{{ characterStats.wis }}&nbsp;
-          cha:{{ characterStats.cha }}&nbsp;
-        </span>
-      </ng-container>
+      <tk-dnd5e-stats
+        *ngSwitchCase="'dnd5eStats'"
+        [stats]="characterStats"
+      ></tk-dnd5e-stats>
     </mat-card-content>
   </mat-card>
 </div>
