@@ -6,6 +6,7 @@ export interface ICharacter {
 
 export interface ICharacterMeta {
   metadataCards: string[];
+  metadataGameSystem: string;
 }
 
 export type ICharacterFb = ICharacter | ICharacterMeta;

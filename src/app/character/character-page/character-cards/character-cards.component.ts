@@ -21,6 +21,7 @@ import { takeUntil  } from 'rxjs/operators';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { CharacterService } from '../../character.service';
+import { ECharacterCard } from './character-card-types/chatacter-cards.types';
 
 @Component({
   selector: 'tk-character-cards',
@@ -33,6 +34,7 @@ export class CharacterCardsComponent implements OnInit, OnDestroy {
   @Input() characterStats: any; // TODO: Abstract this out entirely
   @Input() editMode$: BehaviorSubject<boolean>;
 
+  readonly ECharacterCard = ECharacterCard;
   readonly faArrowsAlt = faArrowsAlt;
 
   private readonly destroy$ = new Subject();

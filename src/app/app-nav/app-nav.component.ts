@@ -33,6 +33,7 @@ export class AppNavComponent implements OnInit {
   readonly faDiceD20 = faDiceD20;
   readonly faCog = faCog;
 
+  toolbarCustomTitle$: BehaviorSubject<string>;
   toolbarActions$: BehaviorSubject<TemplateRef<any>>;
 
   routes: IAppNavBar[] = [
@@ -48,6 +49,7 @@ export class AppNavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.toolbarCustomTitle$ = this.appNavService.getToolbarTitle$();
     this.toolbarActions$ = this.appNavService.getToolbarActions$();
   }
 

@@ -55,6 +55,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
       filter(data => data !== null)
     ).subscribe(characterData => {
       this.characterData = characterData;
+      this.appNavService.setToolbarTitle(this.characterData.name);
       this.isLoading = false;
     });
 
@@ -69,7 +70,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
-    this.appNavService.clearToolbarActions();
+    this.appNavService.resetToolbar();
   }
 
   toggleEditMode(): void {

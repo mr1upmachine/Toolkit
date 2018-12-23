@@ -12,7 +12,7 @@ export class Dnd5eStatFormatPipe implements PipeTransform {
         return '+10';
       } else {
         const result = Math.floor(value / 2) - 5;
-        return `${result > -1 ? '+' : ''}${Math.floor(value / 2) - 5}`;
+        return `${result > -1 ? '+' : ''}${result}`;
       }
     } else {
       return ('0' + value).slice(-2);

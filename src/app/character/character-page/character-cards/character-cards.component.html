@@ -18,11 +18,12 @@
       [class.visibility-hidden]="!(editMode$ | async)"
       [icon]="faArrowsAlt"
     ></fa-icon>
-    <!-- TODO: extract card content into seperate components to be rendered -->
     <!-- TODO: investigate if better to implement components as extention of card content -->
-    <mat-card-content [ngSwitch]="cardType">
+    <mat-card-content
+      [ngSwitch]="cardType"
+      >
       <tk-dnd5e-stats
-        *ngSwitchCase="'dnd5eStats'"
+        *ngSwitchCase="ECharacterCard.dnd5eStats"
         [stats]="characterStats"
       ></tk-dnd5e-stats>
     </mat-card-content>

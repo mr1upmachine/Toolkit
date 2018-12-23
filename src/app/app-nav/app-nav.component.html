@@ -4,7 +4,7 @@
   >
   <a class="text-color-white text-decoration-none" routerLink="/">
     <fa-icon [icon]="faDiceD20"></fa-icon>
-    Toolkit
+    {{ (toolbarCustomTitle$ | async) || 'Toolkit'}}
   </a>
   <span class="flex-stretch"></span>
   <span class="flex-static">
