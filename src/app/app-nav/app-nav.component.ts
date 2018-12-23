@@ -1,11 +1,21 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+// Angular
+import {
+  Component,
+  HostBinding,
+  OnInit,
+  TemplateRef
+} from '@angular/core';
+
+import { BehaviorSubject } from 'rxjs';
 
 // Font Awesome
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faCog,
-  faWalking
+  faDiceD20,
+  faFileAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { AppNavService } from './app-nav.service';
 
 interface IAppNavBar {
   path: string;
@@ -20,19 +30,25 @@ interface IAppNavBar {
 })
 export class AppNavComponent implements OnInit {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
+  readonly faDiceD20 = faDiceD20;
   readonly faCog = faCog;
+
+  toolbarActions$: BehaviorSubject<TemplateRef<any>>;
 
   routes: IAppNavBar[] = [
     {
       path: '/player',
       label: 'Player',
-      icon: faWalking
+      icon: faFileAlt
     }
   ];
 
-  constructor() { }
+  constructor(
+    private appNavService: AppNavService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.toolbarActions$ = this.appNavService.getToolbarActions$();
   }
 
 }

@@ -19,14 +19,17 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AppNavComponent } from './app-nav/app-nav.component';
 import { SharedModule } from './shared/shared.module';
+import { AppComponent } from './app.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppNavComponent } from './app-nav/app-nav.component';
+import { AppNavService } from './app-nav/app-nav.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppNavComponent
+    AppNavComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
   ],
   providers: [
+    AppNavService
   ],
   bootstrap: [AppComponent]
 })

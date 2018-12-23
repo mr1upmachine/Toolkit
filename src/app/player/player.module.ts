@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Material
+// Material / Cdk
 import {
   MatCardModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatRippleModule
 } from '@angular/material';
-
-// Cdk
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
-// Font Awesome
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Firebase
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
+
+// Font Awesome
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PlayerRoutingModule } from './player-routing.module';
 import { PlayerPageComponent } from './player-page/player-page.component';
@@ -30,15 +28,16 @@ import { PlayerService } from './player.service';
 
     MatCardModule,
     MatProgressSpinnerModule,
+    MatRippleModule,
     DragDropModule,
 
     AngularFirestoreModule,
-    AngularFireFunctionsModule,
+
+    FontAwesomeModule,
 
     PlayerRoutingModule
   ],
   providers: [
-    { provide: FunctionsRegionToken, useValue: 'us-central1' },
     PlayerService
   ]
 })

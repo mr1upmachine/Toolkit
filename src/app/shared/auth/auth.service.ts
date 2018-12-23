@@ -19,13 +19,13 @@ export class AuthService {
     });
   }
 
-  loginWithGoogle() {
+  loginWithGoogle(): void {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
       this.router.navigate(['/player']);
     });
   }
 
-  logout() {
+  logout(): void {
     this.afAuth.auth.signOut();
   }
 }

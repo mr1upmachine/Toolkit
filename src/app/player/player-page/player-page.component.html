@@ -5,14 +5,21 @@
   (cdkDropListDropped)="drop($event)">
   <mat-card
     *ngFor="let cardType of playerCards"
-    class="m-v-10"
+    class="m-v-10 position-relative"
     cdkDrag
-    cdkDragBoundary="mat-card"
     >
-    <mat-card-header cdkDragHandle>
-      <mat-card-title>{{ cardType }}</mat-card-title>
+    <mat-card-header>
+      <mat-card-title>
+        <span>{{ cardType }}</span>
+      </mat-card-title>
       <mat-card-subtitle>qwerty</mat-card-subtitle>
     </mat-card-header>
+    <fa-icon
+      cdkDragHandle
+      class="position-absolute top-5 right-5 p-10"
+      [class.visibility-hidden]="!(editMode$ | async)"
+      [icon]="faArrowsAlt"
+    ></fa-icon>
     <mat-card-content>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -22,5 +29,19 @@
 </div>
 
 <ng-template #LoadingSpinner>
-    <mat-spinner></mat-spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<ng-template #ToolbarActions>
+  <span
+    matRipple
+    [matRippleCentered]="true"
+    [matRippleUnbounded]="true"
+    >
+    <fa-icon
+      class="p-10 cursor-pointer"
+      [icon]="editIcon"
+      (click)="toggleEditMode()"
+    ></fa-icon>
+  </span>
 </ng-template>

@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../shared/auth/auth.service';
 
 @Component({
   selector: 'tk-settings-page',
@@ -16,7 +16,7 @@ export class SettingsPageComponent {
     private router: Router
   ) { }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }

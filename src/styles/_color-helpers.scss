@@ -2,6 +2,10 @@ $tk-white: white;
 
 $tk-background-color: #343434;
 
-.text-color-white {
+#{exClass(background-dark)} {
+  background-color: $tk-background-color;
+}
+
+#{exClass(text-color-white)} {
   color: $tk-white;
 }
