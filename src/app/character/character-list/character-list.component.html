@@ -1,9 +1,17 @@
-<ul>
+<ul class="flex-stretch flex-column-nowrap">
   <li *ngFor="let character of characterList$ | async">
     <a
       class="text-color-white"
       [routerLink]="'/characters/detail/' + character"
       (click)="setLastViewedCharacter(character)"
-    >{{ character }}</a>
+      >
+      <div
+        class="p-15"
+        matRipple
+        >
+        {{ character }}
+      </div>
+    </a>
+    <mat-divider></mat-divider>
   </li>
 </ul>

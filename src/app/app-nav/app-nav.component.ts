@@ -12,7 +12,6 @@ import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faBars,
-  faCog,
   faDiceD20,
   faFileAlt
 } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +31,6 @@ interface IAppNavBar {
 export class AppNavComponent {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   readonly faDiceD20 = faDiceD20;
-  readonly faCog = faCog;
   readonly faBars = faBars;
 
   toolbarCustomTitle$ = this.appNavService.getToolbarTitle$();

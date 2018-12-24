@@ -31,7 +31,7 @@ export class RedirectToLastViewedCharacterGuard implements CanActivate {
           this.router.navigate([`/characters/detail/${lastViewedCharacter.id}`]);
         }
       }),
-      map(charToBool => true)
+      map(() => true)
     );
   }
 }
