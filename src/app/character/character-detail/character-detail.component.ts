@@ -59,7 +59,7 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
       this.appNavService.setToolbarActionMenu([
         {
           text: 'Change Character',
-          route: '/character/list'
+          route: '/characters/list'
         }
       ]);
     });

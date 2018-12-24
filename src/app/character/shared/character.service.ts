@@ -1,10 +1,14 @@
 // Angular
 import { Injectable } from '@angular/core';
 
+// Firebase
+import { DocumentReference } from '@angular/fire/firestore';
+
 // Rxjs
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { ApiService } from '../../shared/api/api.service';
+import { ApiService } from 'src/app/shared/api/api.service';
 import { ICharacterFb } from 'src/app/shared/character.types';
 
 @Injectable({
@@ -43,5 +47,15 @@ export class CharacterService {
 
   getAllCharacters(): any {
     return this.apiService.getAllCharacters();
+  }
+
+  setLastViewedCharacter(characterId: string): void {
+    this.apiService.updatePlayerData({
+      lastViewedCharacter: this.apiService.dbCharactersCollection.doc(characterId).ref
+    });
+  }
+
+  getLastViewedCharacter(): Observable<DocumentReference> {
+    return this.apiService.getPlayerData$().pipe(map(user => user.lastViewedCharacter));
   }
 }

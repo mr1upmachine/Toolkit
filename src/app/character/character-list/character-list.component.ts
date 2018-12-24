@@ -18,4 +18,8 @@ export class CharacterListComponent implements OnInit {
 
   }
 
+  setLastViewedCharacter(characterId: string): void {
+    this.characterService.setLastViewedCharacter(characterId);
+  }
+
 }

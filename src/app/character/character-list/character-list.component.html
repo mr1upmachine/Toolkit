@@ -3,6 +3,7 @@
     <a
       class="text-color-white"
       [routerLink]="'/characters/detail/' + character"
+      (click)="setLastViewedCharacter(character)"
     >{{ character }}</a>
   </li>
 </ul>

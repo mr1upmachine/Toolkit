@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { Dnd5eStatFormatPipe } from './dnd5e-stat-format.pipe';
 import { CharacterService } from './character.service';
 import { CharacterExistsGuard } from './character-exists.guard';
+import { RedirectToLastViewedCharacterGuard } from './redirect-to-last-viewed-character.guard';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CharacterExistsGuard } from './character-exists.guard';
   declarations: [Dnd5eStatFormatPipe],
   providers: [
     CharacterService,
-    CharacterExistsGuard
+    CharacterExistsGuard,
+    RedirectToLastViewedCharacterGuard
   ]
 })
 export class CharacterSharedModule { }

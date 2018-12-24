@@ -8,11 +8,6 @@ import { AppNavComponent } from './app-nav/app-nav.component';
 // https://stackoverflow.com/questions/41219439/angular2-global-guard-user-has-to-be-logged-in-always
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
-  },
-  {
     path: '404',
     loadChildren: './not-found/not-found.module#NotFoundModule'
   },
@@ -40,6 +35,11 @@ const routes: Routes = [
         loadChildren: './settings/settings.module#SettingsModule'
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   },
   {
     path: '**',

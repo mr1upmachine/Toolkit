@@ -16,8 +16,9 @@ import { ICharacterFb } from '../character.types';
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly dbCharactersCollection = this.db.collection('/characters');
-  private readonly dbUsersCollection = this.db.collection('/users');
+  readonly dbCharactersCollection = this.db.collection('/characters');
+  readonly dbUsersCollection = this.db.collection('/users');
+  readonly dbCurrentUser = this.dbUsersCollection.doc(this.authService.currentFbUser.uid);
 
   constructor(
     private authService: AuthService,
@@ -33,17 +34,17 @@ export class ApiService {
 
   // TODO: fix typing
   getPlayerData$(): Observable<any> {
-    return this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).valueChanges();
+    return this.dbCurrentUser.valueChanges();
   }
 
   // TODO: Update with partial type
   setPlayerData(playerData: {}): Observable<void> {
-    return from(this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).set(playerData));
+    return from(this.dbCurrentUser.set(playerData));
   }
 
   // TODO: Update with partial type
   updatePlayerData(playerData: {}): Observable<void> {
-    return from(this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).update(playerData));
+    return from(this.dbCurrentUser.update(playerData));
   }
 
   // TODO: fix typing
