@@ -21,7 +21,7 @@ export class AuthService {
 
   loginWithGoogle(): void {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
-      this.router.navigate(['/character']);
+      this.router.navigate(['/characters']);
     });
   }
 

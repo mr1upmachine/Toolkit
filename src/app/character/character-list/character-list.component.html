@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let character of characterList$ | async">
+    <a
+      class="text-color-white"
+      [routerLink]="'/characters/detail/' + character"
+    >{{ character }}</a>
+  </li>
+</ul>

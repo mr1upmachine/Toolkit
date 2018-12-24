@@ -28,11 +28,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'character',
+        redirectTo: 'characters',
         pathMatch: 'full'
       },
       {
-        path: 'character',
+        path: 'characters',
         loadChildren: './character/character.module#CharacterModule'
       },
       {

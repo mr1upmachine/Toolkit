@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CharacterPageComponent } from './character-page/character-page.component';
+import { CharacterExistsGuard } from './shared/character-exists.guard';
 
 const routes: Routes = [
+  // TODO: validate if detail path exists with guard
+  {
+    path: 'detail',
+    loadChildren: './character-detail/character-detail.module#CharacterDetailModule'
+  },
+  {
+    path: 'list',
+    loadChildren: './character-list/character-list.module#CharacterListModule'
+  },
   {
     path: '',
-    component: CharacterPageComponent,
+    redirectTo: 'list',
     pathMatch: 'full'
   }
 ];

@@ -20,7 +20,7 @@ import { takeUntil  } from 'rxjs/operators';
 // Font Awesome
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { CharacterService } from '../../character.service';
+import { CharacterService } from '../../shared/character.service';
 import { ECharacterCard } from './character-card-types/chatacter-cards.types';
 
 @Component({

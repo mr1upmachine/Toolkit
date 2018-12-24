@@ -10,15 +10,11 @@
 </ng-template>
 
 <ng-template #ToolbarActions>
-  <span
-    matRipple
-    [matRippleCentered]="true"
-    [matRippleUnbounded]="true"
-    >
+  <button mat-icon-button>
     <fa-icon
-      class="p-10 cursor-pointer"
+      class="font-size-20"
       [icon]="editIcon"
       (click)="toggleEditMode()"
     ></fa-icon>
-  </span>
+  </button>
 </ng-template>

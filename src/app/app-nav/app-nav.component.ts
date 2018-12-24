@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 // Font Awesome
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
+  faBars,
   faCog,
   faDiceD20,
   faFileAlt
@@ -28,17 +29,19 @@ interface IAppNavBar {
   templateUrl: './app-nav.component.html',
   styleUrls: ['./app-nav.component.scss']
 })
-export class AppNavComponent implements OnInit {
+export class AppNavComponent {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   readonly faDiceD20 = faDiceD20;
   readonly faCog = faCog;
+  readonly faBars = faBars;
 
-  toolbarCustomTitle$: BehaviorSubject<string>;
-  toolbarActions$: BehaviorSubject<TemplateRef<any>>;
+  toolbarCustomTitle$ = this.appNavService.getToolbarTitle$();
+  toolbarActions$ = this.appNavService.getToolbarActions$();
+  toolbarActionMenu$ = this.appNavService.getToolbarActionMenu$();
 
   routes: IAppNavBar[] = [
     {
-      path: '/character',
+      path: '/characters',
       label: 'Character',
       icon: faFileAlt
     }
@@ -47,10 +50,4 @@ export class AppNavComponent implements OnInit {
   constructor(
     private appNavService: AppNavService
   ) { }
-
-  ngOnInit(): void {
-    this.toolbarCustomTitle$ = this.appNavService.getToolbarTitle$();
-    this.toolbarActions$ = this.appNavService.getToolbarActions$();
-  }
-
 }

@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 
 // Firebase
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 
 // Rxjs
-import { Observable, BehaviorSubject, from } from 'rxjs';
-import { filter, take, first } from 'rxjs/operators';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AuthService } from '../auth/auth.service';
 import { ICharacterFb } from '../character.types';
 
+// TODO: Better abstract out this service to be a search for fb docs
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly dbPlayerDoc = this.db.doc(`/users/${this.authService.currentFbUser.uid}`);
-  private dbCharacterDoc: AngularFirestoreDocument;
-  playerData$ = this.dbPlayerDoc.valueChanges();
-  characterData$ = new BehaviorSubject<ICharacterFb>(null);
+  private readonly dbCharactersCollection = this.db.collection('/characters');
+  private readonly dbUsersCollection = this.db.collection('/users');
 
   constructor(
     private authService: AuthService,
@@ -32,29 +31,43 @@ export class ApiService {
     return callable(data);
   }
 
-  // TODO: Update with partial type
-  updatePlayerData(playerData: {}): Observable<void> {
-    return from(this.dbPlayerDoc.update(playerData));
+  // TODO: fix typing
+  getPlayerData$(): Observable<any> {
+    return this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).valueChanges();
   }
 
-  // TODO: change to specify character on call, possible current character mask function
-  updateCharacterData(characterData: Partial<ICharacterFb>): Observable<void> {
-    return from(this.dbCharacterDoc.update(characterData));
+  // TODO: Update with partial type
+  setPlayerData(playerData: {}): Observable<void> {
+    return from(this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).set(playerData));
+  }
+
+  // TODO: Update with partial type
+  updatePlayerData(playerData: {}): Observable<void> {
+    return from(this.dbUsersCollection.doc(`/${this.authService.currentFbUser.uid}`).update(playerData));
   }
 
   // TODO: fix typing
-  getLastUsedCharacter$(): BehaviorSubject<ICharacterFb> {
-    this.playerData$.pipe(
-      filter(value => value !== null),
-      take(1)
-    ).subscribe((value: any) => {
-      this.dbCharacterDoc = value.characters[0];
-      this.db.doc(value.characters[0]).valueChanges().pipe(
-        first()
-      ).subscribe(character => {
-        this.characterData$.next(character as ICharacterFb);
-      });
-    });
-    return this.characterData$;
+  getCharacterData$(id: string): Observable<any> {
+    return this.dbCharactersCollection.doc(id).valueChanges();
+  }
+
+  // TODO: Update with partial type
+  setCharacterData(id: string, characterData: Partial<ICharacterFb>): Observable<void> {
+    return from(this.dbCharactersCollection.doc(id).set(characterData));
+  }
+
+  // TODO: Update with partial type
+  updateCharacterData(id: string, characterData: Partial<ICharacterFb>): Observable<void> {
+    return from(this.dbCharactersCollection.doc(id).update(characterData));
+  }
+
+  getAllCharacters(): any {
+    return this.dbCharactersCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          return a.payload.doc.id;
+        });
+      })
+    );
   }
 }

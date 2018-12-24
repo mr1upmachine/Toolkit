@@ -7,13 +7,17 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // Rxjs
 import {
   Subject,
   BehaviorSubject
 } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import {
+  takeUntil,
+  filter
+} from 'rxjs/operators';
 
 // Font Awesome
 import {
@@ -21,22 +25,21 @@ import {
   faCheckSquare
 } from '@fortawesome/free-solid-svg-icons';
 
-import { CharacterService } from '../character.service';
+import { CharacterService } from '../shared/character.service';
 import { AppNavService } from 'src/app/app-nav/app-nav.service';
 import { ICharacterFb } from 'src/app/shared/character.types';
 
 @Component({
-  selector: 'tk-character-page',
-  templateUrl: './character-page.component.html',
-  styleUrls: ['./character-page.component.scss']
+  selector: 'tk-character-detail',
+  templateUrl: './character-detail.component.html',
+  styleUrls: ['./character-detail.component.scss']
 })
-export class CharacterPageComponent implements OnInit, OnDestroy {
+export class CharacterDetailComponent implements OnInit, OnDestroy {
   @HostBinding('class') readonly hostClass = 'flex-stretch';
   @HostBinding('class.flex-center') isLoading = true;
   @ViewChild('ToolbarActions') toolbarActions: TemplateRef<any>;
 
   characterData: ICharacterFb | any; // TODO enforce type
-  private characterData$ = this.characterService.characterData$;
 
   editMode$ = new BehaviorSubject<boolean>(false);
   editIcon = faPencilAlt;
@@ -44,16 +47,28 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
 
   constructor(
+    private route: ActivatedRoute,
     private characterService: CharacterService,
     private appNavService: AppNavService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.appNavService.setToolbarActions(this.toolbarActions);
+    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
+    setTimeout(() => {
+      this.appNavService.setToolbarActionMenu([
+        {
+          text: 'Change Character',
+          route: '/character/list'
+        }
+      ]);
+    });
 
-    this.characterData$.pipe(
+    const id = this.route.snapshot.paramMap.get('id');
+    this.characterService.id = id;
+    this.characterService.getCharacterData$(id).pipe(
       takeUntil(this.destroy$),
-      filter(data => data !== null)
+      filter(data => data !== null && data !== undefined)
     ).subscribe(characterData => {
       this.characterData = characterData;
       this.appNavService.setToolbarTitle(this.characterData.name);
@@ -65,8 +80,6 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
     ).subscribe(editMode => {
       this.editIcon = editMode ? faCheckSquare : faPencilAlt;
     });
-
-    this.characterService.getLastUsedCharacter();
   }
 
   ngOnDestroy(): void {

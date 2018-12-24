@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 // Material
 import {
+  MatButtonModule,
   MatRippleModule,
   MatMenuModule,
   MatTabsModule,
@@ -24,6 +25,7 @@ import { AppNavService } from './app-nav.service';
     CommonModule,
     RouterModule,
 
+    MatButtonModule,
     MatRippleModule,
     MatMenuModule,
     MatTabsModule,

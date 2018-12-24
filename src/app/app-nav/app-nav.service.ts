@@ -1,24 +1,27 @@
 import { Injectable, TemplateRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { IToolbarMenuItem } from './app-nav.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppNavService {
-  private toolbarCustomTitle$ = new BehaviorSubject<string>(null);
-  private toolbarActions$ = new BehaviorSubject<TemplateRef<any>>(null);
-  private toolbarActionMenu$ = new BehaviorSubject<TemplateRef<any>>(null);
+  private toolbarCustomTitle$ = new Subject<string>();
+  private toolbarActions$ = new Subject<TemplateRef<any>>();
+  private toolbarActionMenu$ = new Subject<IToolbarMenuItem[]>();
 
   resetToolbar(): void {
     this.clearToolbarTitle();
     this.clearToolbarActions();
+    this.clearToolbarActionMenu();
   }
 
   setToolbarTitle(title: string): void {
     this.toolbarCustomTitle$.next(title);
   }
 
-  getToolbarTitle$(): BehaviorSubject<string> {
+  // To be used by app-nav.service.ts only
+  getToolbarTitle$(): Subject<string> {
     return this.toolbarCustomTitle$;
   }
 
@@ -30,7 +33,8 @@ export class AppNavService {
     this.toolbarActions$.next(actionsRef);
   }
 
-  getToolbarActions$(): BehaviorSubject<TemplateRef<any>> {
+  // To be used by app-nav.service.ts only
+  getToolbarActions$(): Subject<TemplateRef<any>> {
     return this.toolbarActions$;
   }
 
@@ -38,11 +42,12 @@ export class AppNavService {
     this.setToolbarActions(null);
   }
 
-  setToolbarActionMenu(actionMenuRef: TemplateRef<any>): void {
+  setToolbarActionMenu(actionMenuRef: IToolbarMenuItem[]): void {
     this.toolbarActionMenu$.next(actionMenuRef);
   }
 
-  getToolbarActionMenu$(): BehaviorSubject<TemplateRef<any>> {
+  // To be used by app-nav.service.ts only
+  getToolbarActionMenu$(): Subject<IToolbarMenuItem[]> {
     return this.toolbarActionMenu$;
   }
 

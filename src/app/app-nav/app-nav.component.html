@@ -9,18 +9,14 @@
   <span class="flex-stretch"></span>
   <span class="flex-static">
     <ng-container
-      *ngIf="toolbarActions$ | async as toolbarActions"
-      [ngTemplateOutlet]="toolbarActions"
+      [ngTemplateOutlet]="toolbarActions$ | async"
     ></ng-container>
-    <a
-      class="p-v-10 m-left-10 text-color-white"
-      routerLink="/settings"
-      matRipple
-      [matRippleCentered]="true"
-      [matRippleUnbounded]="true"
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="ToolbarActionMenu"
       >
-      <fa-icon [icon]="faCog"></fa-icon>
-    </a>
+      <fa-icon class="font-size-20" [icon]="faBars"></fa-icon>
+    </button>
   </span>
 </mat-toolbar>
 <div class="flex flex-stretch">
@@ -37,13 +33,30 @@
     routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive"
     >
-    <fa-icon [icon]="route.icon"></fa-icon>
+    <fa-icon class="font-size-20" [icon]="route.icon"></fa-icon>
   </a>
 </nav>
 
-<mat-menu #ToolbarActionMenu="matMenu">
-  <ng-container
-    *ngIf="toolbarActions$ | async as toolbarActions"
-    [ngTemplateOutlet]="toolbarActions"
-  ></ng-container>
+<mat-menu
+  class="nav-bar-font-size"
+  #ToolbarActionMenu="matMenu"
+  >
+  <a
+    *ngFor="let menuItem of toolbarActionMenu$ | async"
+    mat-menu-item
+    class="text-color-white"
+    [routerLink]="menuItem.route"
+    (click)="menuItem.click"
+    >
+    <fa-icon *ngIf="menuItem.icon" [icon]="menuItem.icon"></fa-icon>
+    {{ menuItem.text }}
+  </a>
+  <a
+    mat-menu-item
+    class="text-color-white"
+    routerLink="/settings"
+    >
+    <fa-icon [icon]="faCog"></fa-icon>
+    Settings
+  </a>
 </mat-menu>
