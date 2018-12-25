@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faBars,
+  faDiceD6,
   faDiceD20,
   faFileAlt
 } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +43,11 @@ export class AppNavComponent {
       path: '/characters',
       label: 'Character',
       icon: faFileAlt
+    },
+    {
+      path: '/dice',
+      label: 'Dice',
+      icon: faDiceD6
     }
   ];
 

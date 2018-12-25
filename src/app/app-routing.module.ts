@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // TODO: check if better practice to use canActivateChild
     component: AppNavComponent,
     children: [
       {
@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'characters',
         loadChildren: './character/character.module#CharacterModule'
+      },
+      {
+        path: 'dice',
+        loadChildren: './dice/dice.module#DiceModule'
       },
       {
         path: 'settings',

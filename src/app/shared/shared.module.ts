@@ -7,9 +7,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
 
+import { ApiService } from './api/api.service';
 import { AuthService } from '../shared/auth/auth.service';
 import { AuthGuard } from '../shared/auth/auth.guard';
 import { NoAuthGuard } from './auth/no-auth.guard';
+import { DiceService } from './dice/dice.service';
 
 @NgModule({
   declarations: [],
@@ -21,9 +23,11 @@ import { NoAuthGuard } from './auth/no-auth.guard';
   ],
   providers: [
     { provide: FunctionsRegionToken, useValue: 'us-central1' },
+    ApiService,
     AuthService,
     AuthGuard,
-    NoAuthGuard
+    NoAuthGuard,
+    DiceService
   ]
 })
 export class SharedModule { }

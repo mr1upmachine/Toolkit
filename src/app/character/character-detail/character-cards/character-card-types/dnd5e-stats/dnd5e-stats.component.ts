@@ -13,7 +13,7 @@ import { IDnd5eStats } from 'src/app/shared/character.types';
   styleUrls: ['./dnd5e-stats.component.scss']
 })
 export class Dnd5eStatsComponent implements OnInit {
-  @HostBinding('class') readonly hostClass = 'flex-row-wrap flex-h-center p-left-20 p-bottom-10';
+  @HostBinding('class') readonly hostClass = 'flex-column-nowrap flex-h-center p-bottom-10';
 
   @Input() stats: IDnd5eStats;
   @Input() str: number;
