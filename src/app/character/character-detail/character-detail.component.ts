@@ -35,8 +35,7 @@ import { ICharacterFb } from 'src/app/shared/character.types';
   styleUrls: ['./character-detail.component.scss']
 })
 export class CharacterDetailComponent implements OnInit, OnDestroy {
-  @HostBinding('class') readonly hostClass = 'flex-stretch';
-  @HostBinding('class.flex-center') isLoading = true;
+  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   @ViewChild('ToolbarActions') toolbarActions: TemplateRef<any>;
 
   characterData: ICharacterFb | any; // TODO enforce type
@@ -72,7 +71,6 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
     ).subscribe(characterData => {
       this.characterData = characterData;
       this.appNavService.setToolbarTitle(this.characterData.name);
-      this.isLoading = false;
     });
 
     this.editMode$.pipe(

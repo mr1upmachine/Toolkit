@@ -20,6 +20,8 @@ export class RedirectToLastViewedCharacterGuard implements CanActivate {
     private characterService: CharacterService
   ) { }
 
+  // TODO: BUG if you load into a detaill view first, it ignores first attempt to navigate to /characters/list
+  // FIX is to have firstLoad be defined in a service and not this guard, and set after first load of char module
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

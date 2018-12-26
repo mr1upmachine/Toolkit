@@ -31,6 +31,10 @@ const routes: Routes = [
         loadChildren: './character/character.module#CharacterModule'
       },
       {
+        path: 'combat',
+        loadChildren: './combat/combat.module#CombatModule'
+      },
+      {
         path: 'dice',
         loadChildren: './dice/dice.module#DiceModule'
       },

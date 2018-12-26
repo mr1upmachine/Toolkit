@@ -1,12 +1,8 @@
 // Angular
 import {
   Component,
-  HostBinding,
-  OnInit,
-  TemplateRef
+  HostBinding
 } from '@angular/core';
-
-import { BehaviorSubject } from 'rxjs';
 
 // Font Awesome
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -16,6 +12,10 @@ import {
   faDiceD20,
   faFileAlt
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSwords
+} from '@fortawesome/pro-solid-svg-icons';
+
 import { AppNavService } from './app-nav.service';
 
 interface IAppNavBar {
@@ -48,6 +48,11 @@ export class AppNavComponent {
       path: '/dice',
       label: 'Dice',
       icon: faDiceD6
+    },
+    {
+      path: '/combat',
+      label: 'Combat',
+      icon: faSwords
     }
   ];
 

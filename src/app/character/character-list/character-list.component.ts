@@ -1,4 +1,9 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  HostBinding
+} from '@angular/core';
 import { CharacterService } from '../shared/character.service';
 import { AppNavService } from 'src/app/app-nav/app-nav.service';
 
@@ -7,7 +12,7 @@ import { AppNavService } from 'src/app/app-nav/app-nav.service';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnInit, OnDestroy {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   characterList$ = this.characterService.getAllCharacters();
 
@@ -26,6 +31,10 @@ export class CharacterListComponent implements OnInit {
         }
       ]);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.appNavService.resetToolbar();
   }
 
   setLastViewedCharacter(characterId: string): void {

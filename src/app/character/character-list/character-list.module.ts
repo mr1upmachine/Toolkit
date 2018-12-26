@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatDividerModule,
-  MatRippleModule
+  MatRippleModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { CharacterSharedModule } from '../shared/character-shared.module';
@@ -16,6 +17,7 @@ import { CharacterListComponent } from './character-list.component';
     CommonModule,
     MatDividerModule,
     MatRippleModule,
+    MatProgressSpinnerModule,
     CharacterListRoutingModule,
     CharacterSharedModule
   ]
