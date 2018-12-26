@@ -1,0 +1,26 @@
+<ul
+  *ngIf="characterList$ | async as characterList; else LoadingSpinner"
+  class="flex-stretch flex-column-nowrap"
+  >
+  <li *ngFor="let character of characterList">
+    <a
+      class="text-color-white"
+      [routerLink]="'/characters/detail/' + character"
+      (click)="setLastViewedCharacter(character)"
+      >
+      <div
+        class="p-15"
+        matRipple
+        >
+        {{ character }}
+      </div>
+    </a>
+    <mat-divider></mat-divider>
+  </li>
+</ul>
+
+<ng-template #LoadingSpinner>
+  <div class="flex-stretch flex-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

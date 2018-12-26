@@ -5,6 +5,10 @@
 @import "./functions"; // must be first
 @import "./layout-helpers";
 @import "./color-helpers";
+@import "./cursor-helpers";
+@import "./text-helpers";
+
+// Internal config
 @import "./cdk-drag-config";
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -15,7 +19,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$tk-app-primary: mat-palette($mat-indigo);
+$tk-app-primary: mat-palette($mat-indigo); // TODO make this set dynamically with user theme
 $tk-app-accent: mat-palette($mat-pink, A200, A100, A400);
 $tk-app-warn: mat-palette($mat-red);
 
@@ -30,8 +34,8 @@ $tk-app-theme: mat-dark-theme($tk-app-primary, $tk-app-accent, $tk-app-warn);
 // Global overrides
 html {
   @extend %full-size;
-  background-color: $tk-background-color;
-  color: $tk-white;
+  @extend %background-dark;
+  @extend %text-color-white;
 }
 
 body {

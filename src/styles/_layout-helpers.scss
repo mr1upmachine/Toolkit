@@ -24,6 +24,11 @@
   flex-direction: row;
 }
 
+.flex-row-wrap {
+  @extend %flex-row;
+  @extend %flex-wrap;
+}
+
 .flex-row-nowrap {
   @extend %flex-row;
   @extend %flex-nowrap;
@@ -34,9 +39,18 @@
   flex-direction: column;
 }
 
+.flex-column-wrap {
+  @extend %flex-column;
+  @extend %flex-wrap;
+}
+
 .flex-column-nowrap {
   @extend %flex-column;
   @extend %flex-nowrap;
+}
+
+#{exClass(flex-wrap)} {
+  flex-wrap: wrap;
 }
 
 #{exClass(flex-nowrap)} {
@@ -44,8 +58,10 @@
 }
 
 .flex-h-center.flex-row,
+.flex-h-center.flex-row-wrap,
 .flex-h-center.flex-row-nowrap,
 .flex-v-center.flex-column,
+.flex-v-center.flex-column-wrap,
 .flex-v-center.flex-column-nowrap,
 .flex-center {
   @extend %flex;
@@ -53,8 +69,10 @@
 }
 
 .flex-v-center.flex-row,
+.flex-v-center.flex-row-wrap,
 .flex-v-center.flex-row-nowrap,
 .flex-h-center.flex-column,
+.flex-h-center.flex-column-wrap,
 .flex-h-center.flex-column-nowrap,
 .flex-center {
   @extend %flex;
@@ -85,9 +103,8 @@
 }
 
 // Layout helpers px (margin & padding)
-$types: none top bottom left right;
-$combos: top-bottom left-right;
-$values: 5 10 15 20 25 30;
+$layout-types: none top bottom left right;
+$layout-values: 5 10 15 20 25 30;
 
 @mixin m-p-mixin($type, $num, $style) {
   @if $type == none {
@@ -97,8 +114,8 @@ $values: 5 10 15 20 25 30;
   }
 }
 
-@each $val in $values {
-  @each $type in $types {
+@each $val in $layout-values {
+  @each $type in $layout-types {
     $typeName: unquote("");
     @if $type != none {
       $typeName: #{$type}-;
@@ -126,6 +143,30 @@ $values: 5 10 15 20 25 30;
   }
 }
 
+// Position
+$positions: top bottom left right;
+$position-values: 0 5 10 15 20 25 30;
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+@each $position in $positions {
+  @each $value in $position-values {
+    .#{$position}-#{$value} {
+      #{$position}: #{$value}px;
+    }
+  }
+}
+
 // Overflow
 .overflow-x {
   overflow-x: auto;
@@ -133,4 +174,9 @@ $values: 5 10 15 20 25 30;
 
 .overflow-y {
   overflow-y: auto;
+}
+
+// visibility
+.visibility-hidden {
+  visibility: hidden;
 }

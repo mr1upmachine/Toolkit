@@ -4,7 +4,14 @@ export interface ICharacter {
   weight?: number;
 }
 
-export interface IDnD5eCharacter extends ICharacter {
+export interface ICharacterMeta {
+  metadataCards: string[];
+  metadataGameSystem: string;
+}
+
+export type ICharacterFb = ICharacter & ICharacterMeta;
+
+export interface IDnD5eCharacter extends ICharacter, ICharacterMeta {
   ac: number;
   alignment?: EDnd5eAlignment;
   class: EDnd5eClass;

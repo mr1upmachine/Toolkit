@@ -1,0 +1,11 @@
+<!-- TODO: Fix jarring spacing when items are on bonus view -->
+<div class="flex-stretch flex-space-between m-bottom-5">
+  <span class="m-h-5" matBadge="str" matBadgePosition="below after">{{ (stats.str || str) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+  <span class="m-h-5" matBadge="dex" matBadgePosition="below after">{{ (stats.dex || dex) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+  <span class="m-h-5" matBadge="con" matBadgePosition="below after">{{ (stats.con || con) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+</div>
+<div class="flex-stretch flex-space-between m-bottom-5">
+  <span class="m-h-5" matBadge="int" matBadgePosition="below after">{{ (stats.int || int) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+  <span class="m-h-5" matBadge="wis" matBadgePosition="below after">{{ (stats.wis || wis) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+  <span class="m-h-5" matBadge="cha" matBadgePosition="below after">{{ (stats.cha || cha) | dnd5eStatFormat: showBonus }}</span>&nbsp;
+</div>

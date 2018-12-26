@@ -1,0 +1,22 @@
+<tk-character-cards
+  *ngIf="characterData; else LoadingSpinner"
+  [characterCards]="characterData.metadataCards"
+  [characterStats]="characterData.stats"
+  [editMode$]="editMode$"
+></tk-character-cards>
+
+<ng-template #LoadingSpinner>
+  <div class="flex-stretch flex-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #ToolbarActions>
+  <button mat-icon-button>
+    <fa-icon
+      class="font-size-20"
+      [icon]="editIcon"
+      (click)="toggleEditMode()"
+    ></fa-icon>
+  </button>
+</ng-template>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppNavComponent } from './app-nav.component';
+import { CombatPageComponent } from './combat-page.component';
 
-describe('AppNavComponent', () => {
-  let component: AppNavComponent;
-  let fixture: ComponentFixture<AppNavComponent>;
+describe('CombatPageComponent', () => {
+  let component: CombatPageComponent;
+  let fixture: ComponentFixture<CombatPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppNavComponent ]
+      declarations: [ CombatPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppNavComponent);
+    fixture = TestBed.createComponent(CombatPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,26 @@
+<div
+  class="flex-stretch p-20 overflow-y"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)">
+  <mat-card
+    *ngFor="let cardType of characterCards"
+    class="m-v-10 position-relative"
+    cdkDrag
+    >
+    <fa-icon
+      cdkDragHandle
+      class="position-absolute top-5 right-5 p-5"
+      [class.visibility-hidden]="!(editMode$ | async)"
+      [icon]="faArrowsAlt"
+    ></fa-icon>
+    <!-- TODO: investigate if better to implement components as extention of card content -->
+    <mat-card-content
+      [ngSwitch]="cardType"
+      >
+      <tk-dnd5e-stats
+        *ngSwitchCase="ECharacterCard.dnd5eStats"
+        [stats]="characterStats"
+      ></tk-dnd5e-stats>
+    </mat-card-content>
+  </mat-card>
+</div>

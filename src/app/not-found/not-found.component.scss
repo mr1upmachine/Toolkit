@@ -1,0 +1,19 @@
+.not-found-content {
+  max-width: 425px;
+
+  h1 {
+    font-size: 20vw;
+    margin-block-start: .2em;
+    margin-block-end: .2em;
+
+    @media(min-width: 425px) {
+      font-size: 85px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+  }
+}
