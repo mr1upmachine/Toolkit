@@ -18,7 +18,7 @@ import { ICharacterFb } from '../character.types';
 export class ApiService {
   readonly dbCharactersCollection = this.db.collection('/characters');
   readonly dbUsersCollection = this.db.collection('/users');
-  readonly dbCurrentUser = this.dbUsersCollection.doc(this.authService.currentFbUser.uid);
+  readonly dbCurrentUser = this.authService.dbCurrentUser;
 
   constructor(
     private authService: AuthService,
