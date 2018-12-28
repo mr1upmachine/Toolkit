@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { DiceApiService } from '../shared/dice-api.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { DiceApiService } from '../shared/dice-api.service';
   styleUrls: ['./dice-history.component.scss']
 })
 export class DiceHistoryComponent {
+  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   history$ = this.diceApiService.getHistory();
 
   constructor(

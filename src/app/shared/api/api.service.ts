@@ -17,8 +17,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiService {
-  readonly dbCharactersCollection = this.db.collection('/characters');
-  readonly dbUsersCollection = this.db.collection('/users');
+  readonly dbCharactersCollection = this.db.collection('characters');
+  readonly dbUsersCollection = this.db.collection('users');
   readonly dbCurrentUser = this.authService.dbCurrentUser;
 
   constructor(

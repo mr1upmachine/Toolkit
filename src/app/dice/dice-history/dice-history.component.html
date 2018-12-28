@@ -1,5 +1,5 @@
-<ul>
-  <li *ngFor="let roll of history$ | async">
+<ul *ngIf="history$ | async as history; else LoadingSpinner">
+  <li *ngFor="let roll of history">
     expr:&nbsp;{{ roll.expr }}
     <br>
     result:&nbsp;{{ roll.result }}
@@ -7,3 +7,9 @@
     time:&nbsp;{{ roll.time | date: 'medium' }}
   </li>
 </ul>
+
+<ng-template #LoadingSpinner>
+  <div class="flex-stretch flex-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

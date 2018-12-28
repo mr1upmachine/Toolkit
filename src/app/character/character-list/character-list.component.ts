@@ -14,7 +14,7 @@ import { AppNavService } from 'src/app/app-nav/app-nav.service';
 })
 export class CharacterListComponent implements OnInit, OnDestroy {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
-  characterList$ = this.characterApiService.getAllCharacters();
+  characterList$ = this.characterApiService.getAllCharacters(); // TODO: Swap with player specific call
 
   constructor(
     private characterApiService: CharacterApiService,

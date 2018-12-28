@@ -19,7 +19,9 @@ export class AuthService {
   ) {
     this.fbUser$.subscribe(user => {
       this.currentFbUser = user;
-      this.dbCurrentUser = this.db.doc(`/users/${user.uid}`);
+      if (user) {
+        this.dbCurrentUser = this.db.doc(`/users/${user.uid}`);
+      }
     });
   }
 
