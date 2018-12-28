@@ -53,15 +53,12 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.appNavService.setToolbarActions(this.toolbarActions);
-    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
-    setTimeout(() => {
-      this.appNavService.setToolbarActionMenu([
-        {
-          text: 'Change Character',
-          route: '/characters/list'
-        }
-      ]);
-    });
+    this.appNavService.setToolbarActionMenu([
+      {
+        text: 'Change Character',
+        route: '/characters/list'
+      }
+    ]);
 
     const id = this.route.snapshot.paramMap.get('id');
     this.characterService.id = id;

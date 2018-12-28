@@ -5,9 +5,10 @@ import { MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/ma
 
 import { DiceRoutingModule } from './dice-routing.module';
 import { DicePageComponent } from './dice-page/dice-page.component';
+import { DiceHistoryComponent } from './dice-history/dice-history.component';
 
 @NgModule({
-  declarations: [DicePageComponent],
+  declarations: [DicePageComponent, DiceHistoryComponent],
   imports: [
     CommonModule,
     FormsModule,

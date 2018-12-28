@@ -32,6 +32,10 @@ export class ApiService {
     return callable(data);
   }
 
+  uniqueId(): string {
+    return this.db.createId();
+  }
+
   // TODO: fix typing
   getPlayerData$(): Observable<any> {
     return this.dbCurrentUser.valueChanges();

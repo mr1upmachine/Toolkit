@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let roll of history$ | async">
+    expr:&nbsp;{{ roll.expr }}
+    <br>
+    result:&nbsp;{{ roll.result }}
+    <br>
+    time:&nbsp;{{ roll.time | date: 'medium' }}
+  </li>
+</ul>

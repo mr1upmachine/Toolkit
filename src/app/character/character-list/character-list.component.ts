@@ -22,15 +22,12 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
-    setTimeout(() => {
-      this.appNavService.setToolbarActionMenu([
-        {
-          text: 'Create Character',
-          route: '/characters/create'
-        }
-      ]);
-    });
+    this.appNavService.setToolbarActionMenu([
+      {
+        text: 'Create Character',
+        route: '/characters/create'
+      }
+    ]);
   }
 
   ngOnDestroy(): void {

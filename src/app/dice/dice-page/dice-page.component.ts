@@ -1,23 +1,37 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { AppNavService } from 'src/app/app-nav/app-nav.service';
 import { DiceService } from 'src/app/shared/dice/dice.service';
+import { DiceApiService } from '../shared/dice-api.service';
 
 @Component({
   selector: 'tk-dice-page',
   templateUrl: './dice-page.component.html',
   styleUrls: ['./dice-page.component.scss']
 })
-export class DicePageComponent {
+export class DicePageComponent implements OnInit {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap flex-center';
 
   diceEq: string;
   result: number;
 
   constructor(
-    private diceService: DiceService
+    private appNavService: AppNavService,
+    private diceService: DiceService,
+    private diceApiService: DiceApiService
   ) { }
+
+  ngOnInit(): void {
+    this.appNavService.setToolbarActionMenu([
+      {
+        text: 'History',
+        route: '/dice/history'
+      }
+    ]);
+}
 
   roll(): void {
     this.result = this.diceService.roll(this.diceEq);
+    this.diceApiService.addToHistory(this.result, this.diceEq);
   }
 
 }
