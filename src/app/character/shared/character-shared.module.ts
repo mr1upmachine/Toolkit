@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { Dnd5eStatFormatPipe } from './dnd5e-stat-format.pipe';
-import { CharacterService } from './character.service';
+import { CharacterApiService } from './character-api.service';
 import { CharacterExistsGuard } from './character-exists.guard';
 import { RedirectToLastViewedCharacterGuard } from './redirect-to-last-viewed-character.guard';
 
@@ -17,7 +17,7 @@ import { RedirectToLastViewedCharacterGuard } from './redirect-to-last-viewed-ch
   exports: [Dnd5eStatFormatPipe],
   declarations: [Dnd5eStatFormatPipe],
   providers: [
-    CharacterService,
+    CharacterApiService,
     CharacterExistsGuard,
     RedirectToLastViewedCharacterGuard
   ]
