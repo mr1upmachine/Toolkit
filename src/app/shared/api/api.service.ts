@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 
 // Firebase
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 
 // Rxjs
 import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { AuthService } from '../auth/auth.service';
 import { ICharacterFb } from '../character.types';
+
+import { map } from 'rxjs/operators';
 
 // TODO: Better abstract out this service to be a search for fb docs
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  readonly dbCharactersCollection = this.db.collection('/characters');
-  readonly dbUsersCollection = this.db.collection('/users');
-  readonly dbCurrentUser = this.dbUsersCollection.doc(this.authService.currentFbUser.uid);
+  readonly dbCharactersCollection = this.db.collection('characters');
+  readonly dbUsersCollection = this.db.collection('users');
+  readonly dbCurrentUser = this.authService.dbCurrentUser;
 
   constructor(
     private authService: AuthService,
@@ -30,6 +31,10 @@ export class ApiService {
   requestApi<T, U>(funcName: string, data: T): Observable<U> {
     const callable = this.fns.httpsCallable(funcName);
     return callable(data);
+  }
+
+  uniqueId(): string {
+    return this.db.createId();
   }
 
   // TODO: fix typing
@@ -62,13 +67,23 @@ export class ApiService {
     return from(this.dbCharactersCollection.doc(id).update(characterData));
   }
 
-  getAllCharacters(): any {
-    return this.dbCharactersCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          return a.payload.doc.id;
+  // TODO: fix typing
+  getAllCharacters(): Observable<any> {
+    return this.dbCharactersCollection.get().pipe(
+      map(querySnapshot => {
+        const queryList = [];
+        querySnapshot.forEach(doc => {
+          queryList.push(doc.data());
         });
+        return queryList;
       })
     );
   }
+
+  // TODO: fix typing
+  // getAllCharactersWhere(query: QueryFn): Observable<any> {
+  //   return this.dbCharactersCollection.get().pipe(
+  //     fbDataMap()
+  //   );
+  // }
 }

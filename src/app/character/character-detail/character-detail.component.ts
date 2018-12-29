@@ -25,7 +25,7 @@ import {
   faCheckSquare
 } from '@fortawesome/free-solid-svg-icons';
 
-import { CharacterService } from '../shared/character.service';
+import { CharacterApiService } from '../shared/character-api.service';
 import { AppNavService } from 'src/app/app-nav/app-nav.service';
 import { ICharacterFb } from 'src/app/shared/character.types';
 
@@ -47,25 +47,22 @@ export class CharacterDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private characterService: CharacterService,
+    private characterApiService: CharacterApiService,
     private appNavService: AppNavService
   ) { }
 
   ngOnInit(): void {
     this.appNavService.setToolbarActions(this.toolbarActions);
-    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
-    setTimeout(() => {
-      this.appNavService.setToolbarActionMenu([
-        {
-          text: 'Change Character',
-          route: '/characters/list'
-        }
-      ]);
-    });
+    this.appNavService.setToolbarActionMenu([
+      {
+        text: 'Change Character',
+        route: '/characters/list'
+      }
+    ]);
 
     const id = this.route.snapshot.paramMap.get('id');
-    this.characterService.id = id;
-    this.characterService.getCharacterData$(id).pipe(
+    this.characterApiService.id = id;
+    this.characterApiService.getCharacterData$(id).pipe(
       takeUntil(this.destroy$),
       filter(data => data !== null && data !== undefined)
     ).subscribe(characterData => {

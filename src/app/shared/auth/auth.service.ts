@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
@@ -10,6 +10,7 @@ import { auth } from 'firebase/app';
 export class AuthService {
   fbUser$ = this.afAuth.authState;
   currentFbUser: firebase.User;
+  dbCurrentUser: AngularFirestoreDocument;
 
   constructor(
     private router: Router,
@@ -18,6 +19,9 @@ export class AuthService {
   ) {
     this.fbUser$.subscribe(user => {
       this.currentFbUser = user;
+      if (user) {
+        this.dbCurrentUser = this.db.doc(`/users/${user.uid}`);
+      }
     });
   }
 

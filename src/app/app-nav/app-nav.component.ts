@@ -6,8 +6,8 @@ import {
 
 // Font Awesome
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faEllipsisV } from '@fortawesome/pro-regular-svg-icons';
 import {
-  faBars,
   faDiceD6,
   faDiceD20,
   faFileAlt
@@ -32,7 +32,7 @@ interface IAppNavBar {
 export class AppNavComponent {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
   readonly faDiceD20 = faDiceD20;
-  readonly faBars = faBars;
+  readonly faEllipsisV = faEllipsisV;
 
   toolbarCustomTitle$ = this.appNavService.getToolbarTitle$();
   toolbarActions$ = this.appNavService.getToolbarActions$();
