@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { DiceResultDialogComponent } from './dice-result-dialog/dice-result-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,18 @@ export class DiceService {
   private readonly advSymbol = '^';
   private readonly disSymbol = 'v';
 
+  constructor(public dialog: MatDialog) {}
+
   roll(diceExpr: string): number {
     if (!diceExpr) {
       return NaN;
     }
-    return diceExpr.match(this.validationRegex)
-             // tslint:disable-next-line:no-eval
-             ? eval(this.evalExpr(diceExpr))
-             : NaN;
+    const result: number = diceExpr.match(this.validationRegex)
+                    // tslint:disable-next-line:no-eval
+                    ? eval(this.evalExpr(diceExpr))
+                    : NaN;
+    this.showResult(result, diceExpr);
+    return result;
   }
 
   // TODO: Investigate optimizations through rxjs
@@ -74,5 +80,16 @@ export class DiceService {
       rollResults.push(Math.floor((Math.random() * dieValue) + 1));
     }
     return rollResults.sort((a, b) => a - b);
+  }
+
+  private showResult(result: number | string, detail?: string): void {
+    this.dialog.open(DiceResultDialogComponent, {
+      width: '150px',
+      height: '150px',
+      data: {
+        result,
+        detail
+      }
+    });
   }
 }

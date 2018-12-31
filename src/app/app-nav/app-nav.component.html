@@ -12,10 +12,11 @@
       [ngTemplateOutlet]="toolbarActions$ | async"
     ></ng-container>
     <button
+      class="nav-bar-action-menu"
       mat-icon-button
       [matMenuTriggerFor]="ToolbarActionMenu"
       >
-      <fa-icon class="font-size-20" [icon]="faBars"></fa-icon>
+      <fa-icon class="font-size-24" [icon]="faEllipsisV"></fa-icon>
     </button>
   </span>
 </mat-toolbar>

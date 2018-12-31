@@ -1,3 +1,4 @@
 export interface IDiceResult {
-  result: number;
+  result: number | string;
+  detail: string;
 }

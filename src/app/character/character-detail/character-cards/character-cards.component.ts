@@ -20,7 +20,7 @@ import { takeUntil  } from 'rxjs/operators';
 // Font Awesome
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { CharacterService } from '../../shared/character.service';
+import { CharacterApiService } from '../../shared/character-api.service';
 import { ECharacterCard } from './character-card-types/chatacter-cards.types';
 
 @Component({
@@ -40,7 +40,7 @@ export class CharacterCardsComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
 
   constructor(
-    public characterService: CharacterService
+    public characterApiService: CharacterApiService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class CharacterCardsComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(editMode => {
       if (!editMode && this.characterCards) {
-        this.characterService.setMetadataCards(this.characterCards);
+        this.characterApiService.setMetadataCards(this.characterCards);
       }
     });
   }
