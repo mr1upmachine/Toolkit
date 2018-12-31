@@ -14,7 +14,7 @@ import { ICharacterFb } from 'src/app/shared/character.types';
 @Injectable({
   providedIn: 'root'
 })
-export class CharacterService {
+export class CharacterApiService {
   id: string; // TODO: find better abstraction
 
   constructor(
@@ -47,6 +47,18 @@ export class CharacterService {
 
   getAllCharacters(): any {
     return this.apiService.getAllCharacters();
+  }
+
+  getAllCharactersByCurrentPlayer(): any {
+    return this.apiService.dbCurrentUser.collection('characters').get().pipe(
+      map(querySnapshot => {
+        const characterList = [];
+        querySnapshot.forEach(doc => {
+          characterList.push(doc.data());
+        });
+        return characterList;
+      })
+    );
   }
 
   setLastViewedCharacter(characterId: string): void {

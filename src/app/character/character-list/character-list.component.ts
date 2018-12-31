@@ -4,7 +4,7 @@ import {
   OnInit,
   HostBinding
 } from '@angular/core';
-import { CharacterService } from '../shared/character.service';
+import { CharacterApiService } from '../shared/character-api.service';
 import { AppNavService } from 'src/app/app-nav/app-nav.service';
 
 @Component({
@@ -14,23 +14,20 @@ import { AppNavService } from 'src/app/app-nav/app-nav.service';
 })
 export class CharacterListComponent implements OnInit, OnDestroy {
   @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
-  characterList$ = this.characterService.getAllCharacters();
+  characterList$ = this.characterApiService.getAllCharacters(); // TODO: Swap with player specific call
 
   constructor(
-    private characterService: CharacterService,
+    private characterApiService: CharacterApiService,
     private appNavService: AppNavService
   ) { }
 
   ngOnInit(): void {
-    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
-    setTimeout(() => {
-      this.appNavService.setToolbarActionMenu([
-        {
-          text: 'Create Character',
-          route: '/characters/create'
-        }
-      ]);
-    });
+    this.appNavService.setToolbarActionMenu([
+      {
+        text: 'Create Character',
+        route: '/characters/create'
+      }
+    ]);
   }
 
   ngOnDestroy(): void {
@@ -38,7 +35,7 @@ export class CharacterListComponent implements OnInit, OnDestroy {
   }
 
   setLastViewedCharacter(characterId: string): void {
-    this.characterService.setLastViewedCharacter(characterId);
+    this.characterApiService.setLastViewedCharacter(characterId);
   }
 
 }

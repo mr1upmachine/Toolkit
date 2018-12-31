@@ -43,7 +43,10 @@ export class AppNavService {
   }
 
   setToolbarActionMenu(actionMenuRef: IToolbarMenuItem[]): void {
-    this.toolbarActionMenu$.next(actionMenuRef);
+    // HACK: timing is too narrow, throws error. This forces to be run after zone.js is done
+    setTimeout(() => {
+      this.toolbarActionMenu$.next(actionMenuRef);
+    });
   }
 
   // To be used by app-nav.service.ts only

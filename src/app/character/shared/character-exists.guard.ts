@@ -11,7 +11,7 @@ import {
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
-import { CharacterService } from './character.service';
+import { CharacterApiService } from './character-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +20,13 @@ export class CharacterExistsGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private characterService: CharacterService
+    private characterApiService: CharacterApiService
   ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.redirectfEmpty(next.params.id) && this.characterService.getCharacterData$(next.params.id).pipe(
+    return this.redirectfEmpty(next.params.id) && this.characterApiService.getCharacterData$(next.params.id).pipe(
       tap(charExists => {
         if (!charExists) {
           this.router.navigate(['/characters']);
