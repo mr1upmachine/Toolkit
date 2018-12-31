@@ -127,6 +127,7 @@
   <button
     mat-flat-button
     color="primary"
+    [disabled]="disableSubmit"
     (click)="submit.emit()"
     >
     =

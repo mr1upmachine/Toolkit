@@ -5,7 +5,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { CharacterApiService } from '../shared/character-api.service';
-import { AppNavService } from 'src/app/app-nav/app-nav.service';
+import { AppNavService } from '@tk/app/app-nav/app-nav.service';
 
 @Component({
   selector: 'tk-character-list',

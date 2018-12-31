@@ -8,8 +8,8 @@ import { DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApiService } from 'src/app/shared/api/api.service';
-import { ICharacterFb } from 'src/app/shared/character.types';
+import { ApiService } from '@tk/shared/api/api.service';
+import { ICharacterFb } from '@tk/shared/character.types';
 
 @Injectable({
   providedIn: 'root'

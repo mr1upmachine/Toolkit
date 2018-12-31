@@ -26,8 +26,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { CharacterApiService } from '../shared/character-api.service';
-import { AppNavService } from 'src/app/app-nav/app-nav.service';
-import { ICharacterFb } from 'src/app/shared/character.types';
+import { AppNavService } from '@tk/app/app-nav/app-nav.service';
+import { ICharacterFb } from '@tk/shared/character.types';
 
 @Component({
   selector: 'tk-character-detail',

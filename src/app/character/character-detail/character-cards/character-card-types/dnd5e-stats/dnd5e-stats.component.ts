@@ -5,7 +5,7 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { IDnd5eStats } from 'src/app/shared/character.types';
+import { IDnd5eStats } from '@tk/shared/character.types';
 
 @Component({
   selector: 'tk-dnd5e-stats',

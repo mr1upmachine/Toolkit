@@ -2,6 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@tk/app/*": ["src/app/*"],
+      "@tk/shared/*": ["src/app/shared/*"],
+      "@tk/utils/*": ["src/app/shared/utils/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

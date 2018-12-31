@@ -2,11 +2,13 @@
   <mat-form-field class="w-100">
     <input
       matInput
-      [(ngModel)]="diceEq"
+      [formControl]="diceEq"
     />
+    <mat-error *ngIf="diceEq.invalid" class="font-size-large">Dice eq not valid</mat-error>
   </mat-form-field>
 </div>
 <tk-dice-keypad
+  [disableSubmit]="diceEq.invalid"
   (keyPress)="keyPressed($event)"
   (parenthesesPress)="parenthesesPressed()"
   (advantagePress)="advantagePressed()"

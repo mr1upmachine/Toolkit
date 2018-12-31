@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DiceResultDialogComponent } from './dice-result-dialog/dice-result-dialog.component';
+import {
+  DICE_EXPR_REGEX,
+  DICE_REGEX,
+  PAREN_GROUP_REGEX
+} from '../utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiceService {
-  private readonly validationRegex = /(([\+\-\*\/]?(\(*[0-9]*d[0-9]+([\^v][0-9]+)?)+\)*)|(\(*[\+\-\*\/]?[0-9]+\)*))+/g;
-  private readonly parenGroupRegex = /\(.+\)/g;
-  private readonly diceRegex = /[0-9]*d[0-9]+([\^v][0-9])?/g;
+  private readonly diceExprRegex = DICE_EXPR_REGEX;
+  private readonly diceRegex = DICE_REGEX;
+  private readonly parenGroupRegex = PAREN_GROUP_REGEX;
   private readonly diceSymbol = 'd';
   private readonly advSymbol = '^';
   private readonly disSymbol = 'v';
@@ -19,7 +24,7 @@ export class DiceService {
     if (!diceExpr) {
       return NaN;
     }
-    const result: number = diceExpr.match(this.validationRegex)
+    const result: number = diceExpr.match(this.diceExprRegex)
                     // tslint:disable-next-line:no-eval
                     ? eval(this.evalExpr(diceExpr))
                     : NaN;
@@ -84,8 +89,8 @@ export class DiceService {
 
   private showResult(result: number | string, detail?: string): void {
     this.dialog.open(DiceResultDialogComponent, {
-      width: '150px',
-      height: '150px',
+      minWidth: '150px',
+      minHeight: '150px',
       data: {
         result,
         detail

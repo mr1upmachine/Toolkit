@@ -1,6 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
 import { faDiceD20 } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '@tk/shared/auth/auth.service';
 
 @Component({
   selector: 'tk-login',

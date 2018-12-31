@@ -2,6 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
+    "baseUrl": ".",
+    "paths": {
+      "@tk/app/*": ["app/*"],
+      "@tk/shared/*": ["app/shared/*"],
+      "@tk/utils/*": ["app/shared/utils/*"]
+    },
     "types": []
   },
   "exclude": [
