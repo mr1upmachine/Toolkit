@@ -9,9 +9,9 @@ import { DiceApiService } from '../shared/dice-api.service';
   styleUrls: ['./dice-page.component.scss']
 })
 export class DicePageComponent implements OnInit {
-  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap flex-center';
+  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap p-h-20';
 
-  diceEq: string;
+  diceEq = '';
   result: number;
 
   constructor(
@@ -34,4 +34,23 @@ export class DicePageComponent implements OnInit {
     this.diceApiService.addToHistory(this.result, this.diceEq);
   }
 
+  keyPressed(value: string): void {
+    this.diceEq += value;
+  }
+
+  parenthesesPressed(): void {
+
+  }
+
+  advantagePressed(): void {
+
+  }
+
+  disadvantagePressed(): void {
+
+  }
+
+  backspacePressed(): void {
+    this.diceEq = this.diceEq.slice(0, -1);
+  }
 }

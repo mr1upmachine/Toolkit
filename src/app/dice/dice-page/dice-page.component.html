@@ -1,15 +1,16 @@
-<mat-form-field>
-  <input
-    matInput
-    placeholder="Dice string"
-    [(ngModel)]="diceEq"
-  />
-</mat-form-field>
-<br>
-<button
-  mat-flat-button
-  color="primary"
-  (click)="roll()"
-  >
-  roll
-</button>
+<div class="expr-entry font-size-64 flex-v-center">
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      [(ngModel)]="diceEq"
+    />
+  </mat-form-field>
+</div>
+<tk-dice-keypad
+  (keyPress)="keyPressed($event)"
+  (parenthesesPress)="parenthesesPressed()"
+  (advantagePress)="advantagePressed()"
+  (disadvantagePress)="disadvantagePressed()"
+  (backspacePress)="backspacePressed()"
+  (submit)="roll()"
+></tk-dice-keypad>

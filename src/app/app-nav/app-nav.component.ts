@@ -22,6 +22,7 @@ interface IAppNavBar {
   path: string;
   label: string;
   icon: IconDefinition;
+  disabled?: boolean;
 }
 
 @Component({

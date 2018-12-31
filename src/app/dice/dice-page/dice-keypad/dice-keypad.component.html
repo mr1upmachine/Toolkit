@@ -1,0 +1,134 @@
+<div class="key-row-container flex-stretch flex-row-nowrap">
+  <button
+    mat-flat-button
+    disabled
+    (click)="advantagePress.emit()"
+    >
+    Adv
+  </button>
+  <button
+    mat-flat-button
+    disabled
+    (click)="disadvantagePress.emit()"
+    >
+    Dis
+  </button>
+  <button
+    mat-flat-button
+    (click)="backspacePress.emit()"
+    >
+    <fa-icon [icon]="faBackspace"></fa-icon>
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('+')"
+    >
+    +
+  </button>
+</div>
+<div class="key-row-container flex-stretch flex-row-nowrap">
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('7')"
+    >
+    7
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('8')"
+    >
+    8
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('9')"
+    >
+    9
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('-')"
+    >
+    -
+  </button>
+</div>
+<div class="key-row-container flex-stretch flex-row-nowrap">
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('4')"
+    >
+    4
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('5')"
+    >
+    5
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('6')"
+    >
+    6
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('*')"
+    >
+    *
+  </button>
+</div>
+<div class="key-row-container flex-stretch flex-row-nowrap">
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('1')"
+    >
+    1
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('2')"
+    >
+    2
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('3')"
+    >
+    3
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('/')"
+    >
+    /
+  </button>
+</div>
+<div class="key-row-container flex-stretch flex-row-nowrap">
+  <button
+    mat-flat-button
+    disabled
+    (click)="parenthesesPress.emit()"
+    >
+    ( )
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('0')"
+    >
+    0
+  </button>
+  <button
+    mat-flat-button
+    (click)="keyPress.emit('d')"
+    >
+    d
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="submit.emit()"
+    >
+    =
+  </button>
+</div>
