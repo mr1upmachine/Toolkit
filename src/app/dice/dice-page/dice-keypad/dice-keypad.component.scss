@@ -1,0 +1,12 @@
+[mat-flat-button] {
+  flex: .25 0;
+  font-size: xx-large;
+}
+
+[mat-flat-button] + [mat-flat-button] {
+  margin-left: 3px;
+}
+
+.key-row-container {
+  margin-bottom: 3px;
+}
