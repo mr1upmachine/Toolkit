@@ -6,24 +6,12 @@
   text-decoration: none;
 }
 
-#{exClass(font-size-20)} {
+.font-size-20 {
   font-size: 20px;
 }
 
-#{exClass(font-size-24)} {
+.font-size-24 {
   font-size: 24px;
-}
-
-.font-size-large {
-  font-size: large;
-}
-
-.font-size-x-large {
-  font-size: x-large;
-}
-
-.font-size-xx-large {
-  font-size: xx-large;
 }
 
 .font-size-40 {
@@ -32,4 +20,44 @@
 
 .font-size-64 {
   font-size: 64px;
+}
+
+.font-size-initial {
+  font-size: initial;
+}
+
+.font-size-unset {
+  font-size: unset;
+}
+
+.font-size-xx-small {
+  font-size: xx-small;
+}
+
+.font-size-x-small {
+  font-size: x-small;
+}
+
+.font-size-smaller {
+  font-size: smaller;
+}
+
+.font-size-small {
+  font-size: small;
+}
+
+.font-size-large {
+  font-size: large;
+}
+
+.font-size-larger {
+  font-size: larger;
+}
+
+.font-size-x-large {
+  font-size: x-large;
+}
+
+.font-size-xx-large {
+  font-size: xx-large;
 }

@@ -7,7 +7,7 @@ import { DiceApiService } from '../shared/dice-api.service';
   styleUrls: ['./dice-history.component.scss']
 })
 export class DiceHistoryComponent {
-  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap';
+  @HostBinding('class') readonly hostClass = 'flex-stretch flex-column-nowrap overflow-y-auto p-v-5 p-h-20';
   history$ = this.diceApiService.getHistory();
 
   constructor(

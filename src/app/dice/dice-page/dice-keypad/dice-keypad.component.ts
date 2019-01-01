@@ -18,7 +18,6 @@ export class DiceKeypadComponent {
 
   @Input() disableSubmit: boolean;
   @Output() keyPress = new EventEmitter<string>();
-  @Output() parenthesesPress = new EventEmitter();
   @Output() advantagePress = new EventEmitter();
   @Output() disadvantagePress = new EventEmitter();
   @Output() backspacePress = new EventEmitter();

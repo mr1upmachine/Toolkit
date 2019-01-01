@@ -16,10 +16,17 @@ import { AuthGuard } from '../shared/auth/auth.guard';
 import { NoAuthGuard } from './auth/no-auth.guard';
 import { DiceService } from './dice/dice.service';
 import { DiceResultDialogComponent } from './dice/dice-result-dialog/dice-result-dialog.component';
+import { TimeDifferencePipe } from './time-difference-pipe/time-difference.pipe';
 
 @NgModule({
-  declarations: [DiceResultDialogComponent],
+  declarations: [
+    DiceResultDialogComponent,
+    TimeDifferencePipe
+  ],
   entryComponents: [DiceResultDialogComponent],
+  exports: [
+    TimeDifferencePipe
+  ],
   imports: [
     CommonModule,
     MatDialogModule,

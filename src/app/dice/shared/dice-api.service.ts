@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class DiceApiService {
   private readonly diceHistoryKey = 'diceHistory';
   readonly diceHistoryRef = this.apiService.dbCurrentUser.collection(this.diceHistoryKey);
+  readonly diceHistorySortedRef = this.apiService.dbCurrentUser.collection(this.diceHistoryKey, ref => ref.orderBy('time', 'desc'));
 
   constructor(
     private apiService: ApiService
@@ -24,7 +25,7 @@ export class DiceApiService {
   }
 
   getHistory(): Observable<any[]> {
-    return this.diceHistoryRef.get().pipe(
+    return this.diceHistorySortedRef.get().pipe(
       map(querySnapshot => {
         const diceHistory = [];
         querySnapshot.forEach(doc => {

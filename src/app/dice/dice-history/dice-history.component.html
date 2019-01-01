@@ -1,12 +1,23 @@
-<ul *ngIf="history$ | async as history; else LoadingSpinner">
-  <li *ngFor="let roll of history">
-    expr:&nbsp;{{ roll.expr }}
-    <br>
-    result:&nbsp;{{ roll.result }}
-    <br>
-    time:&nbsp;{{ roll.time | date: 'medium' }}
-  </li>
-</ul>
+<ng-container *ngIf="history$ | async as history; else LoadingSpinner">
+  <mat-card
+    *ngFor="let roll of history"
+    class="m-v-5"
+    >
+    <mat-card-content>
+      <div class="text-center font-size-xx-large m-bottom-15">
+        {{ roll.result }}
+      </div>
+      <div class="flex-row-nowrap flex-space-between">
+        <div>
+          {{ roll.expr }}
+        </div>
+        <div>
+          {{ roll.time | timeDifference }}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
 
 <ng-template #LoadingSpinner>
   <div class="flex-stretch flex-center">

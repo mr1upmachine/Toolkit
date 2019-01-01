@@ -42,10 +42,6 @@ export class DicePageComponent implements OnInit {
     this.diceEq.setValue(this.diceEq.value + value);
   }
 
-  parenthesesPressed(): void {
-
-  }
-
   advantagePressed(): void {
 
   }
